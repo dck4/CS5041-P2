@@ -6,10 +6,20 @@ import { Text, View } from "react-native";
 // advanced: scrolling to the bottom triggers more posts to load (should be a framework allowing lazy loading like this)
 // basic: simply pages showing X number of posts
 
-export function Main() {
+export default function Main() {
     return (
         <View>
             <Text>List of posts</Text>
+            <Pressable
+                onPress={() => navigation.navigate('LoginCreate')}
+                style={{
+                backgroundColor: 'plum',
+                padding: 10,
+                marginBottom: 10,
+                marginTop: 10,
+                }}>
+                <Text>Login</Text>
+            </Pressable>
         </View>
     )
 }
