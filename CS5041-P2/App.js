@@ -7,6 +7,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main from "./pages/posts"
 import LoginCreate from "./pages/login-create"
 import CreatePost from "./pages/create-post"
+import Banner from "./components/banner";
+import { Header } from '@react-navigation/stack';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyDBjUEw_DQNMQsZJWfTtLL0PQJoH-xF0kk",
@@ -28,11 +30,10 @@ export default function App() {
 
   return (
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-      <Text>F</Text>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" element={Main}/>
-        <Stack.Screen name="LoginCreate" element={LoginCreate}/>
-        <Stack.Screen name="CreatePost" element={CreatePost}/>
+      <Stack.Navigator screenOptions={{header:Banner}}>
+        <Stack.Screen name="Home" component={Main}/>
+        <Stack.Screen name="LoginCreate" component={LoginCreate}/>
+        <Stack.Screen name="CreatePost" component={CreatePost}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,5 +1,5 @@
 
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 
 // this should be the frame for the "posts" page
 // this should fetch posts from the database to display a scrolling view of posts starting from the most recent
@@ -10,7 +10,7 @@ export default function Main() {
     return (
         <View>
             <Text>List of posts</Text>
-            <Pressable
+            <Button
                 onPress={() => navigation.navigate('LoginCreate')}
                 style={{
                 backgroundColor: 'plum',
@@ -19,7 +19,7 @@ export default function Main() {
                 marginTop: 10,
                 }}>
                 <Text>Login</Text>
-            </Pressable>
+            </Button>
         </View>
     )
 }
