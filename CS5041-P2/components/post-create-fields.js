@@ -8,9 +8,11 @@ import { ref, get, push, child, serverTimestamp } from 'firebase/database'
 import { auth, database } from '../Firebase';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
-import { Button } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
+import { ActivityIndicator } from "react-native-web";
+
 
 // assuming loggin or add a login hook
 // error: user is not defined
@@ -76,21 +78,30 @@ export default function CreatePostFields() {
 
     return (
         <SafeAreaView>
-            <TextInput 
-                label="Title"
-                value={title}
-                onChangeText={title => setTitle(title)}></TextInput>
-            <TextInput
-                label="Game"
-                value={game}
-                onChangeText={game => setGame(game)}></TextInput>
-            <TextInput
-                label="Content"
-                value={body}
-                onChangeText={body => setBody(body)}></TextInput>
-            <StatusBar style="auto" />
-            <Button onPress={handleOnPostPress}>Post</Button>
-            <Button onPress={handleOnCancelPress}>Cancel</Button>
+            {/* waiting for signing in */}
+            {authLoading ? 
+                <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <ActivityIndicator size="large"></ActivityIndicator>
+                    <Text>loading...</Text>
+                </SafeAreaView> :
+                <>
+                    <TextInput 
+                        label="Title"
+                        value={title}
+                        onChangeText={title => setTitle(title)}></TextInput>
+                    <TextInput
+                        label="Game"
+                        value={game}
+                        onChangeText={game => setGame(game)}></TextInput>
+                    <TextInput
+                        label="Content"
+                        value={body}
+                        onChangeText={body => setBody(body)}></TextInput>
+                    <StatusBar style="auto" />
+                    <Button onPress={handleOnPostPress}>Post</Button>
+                    <Button onPress={handleOnCancelPress}>Cancel</Button>
+                </>
+            }
         </SafeAreaView>
     )
 }
