@@ -2,9 +2,6 @@
 // this should return the form for creating a post - title, game, body and post/cancel buttons
 // creating a post sends a message to the database
 
-// this should return the form for creating a post - title, game, body and post/cancel buttons
-// creating a post sends a message to the database
-
 import { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { ref, get, push, child, serverTimestamp } from 'firebase/database'
@@ -33,28 +30,22 @@ export default function CreatePostFields() {
     const [game, setGame] = useState("");
     const [body, setBody] = useState("");
 
+    // can only write one object each time, or can divided in 3 parts.
+
     const handleOnPostPress = () => {
         if (title === '' || game === '' || body === '') {
             alert("the title, game and content cannot be empty!")
         } else {
             push(child(user ? ref(database) : null, `/public/${user.uid}`), {
-                type: 'text',
+                type: 'post',
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
                 message: title,
-                content: ""
+                content: game + "|" + body
             })
-            
+
         // can only write one object each time, or can divided in 3 parts.
 
-            push(child(user ? ref(database): null, `/public/${user.uid}`), 
-            {
-                    type: 'text',
-                    created: serverTimestamp(),
-                    modified: serverTimestamp(),
-                    message: game,
-                    content: body
-            })
             setTitle("");
             setGame("");
             setBody("");
