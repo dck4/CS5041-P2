@@ -1,4 +1,3 @@
-
 // this should return the form used to log in - the username and password fields, and the "create" and "log in" buttons
 // create sends a message to the database adding the user and setting a UID
 
