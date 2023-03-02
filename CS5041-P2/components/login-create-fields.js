@@ -1,3 +1,4 @@
+
 // this should return the form used to log in - the username and password fields, and the "create" and "log in" buttons
 // create sends a message to the database adding the user and setting a UID
 
@@ -42,13 +43,13 @@ export default function LoginCreateFields () {
                 type: 'text',
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
-                message: username,
+                username: username,
                 content: ""
             }, {
                 type: 'text',
                 created:serverTimestamp(),
                 modified: serverTimestamp(),
-                message: password,
+                password: password,
                 content: ""
                 }) 
             setUsername("");
@@ -61,7 +62,6 @@ export default function LoginCreateFields () {
     const handleOnLoginPress = () => {
         // read the data from private path and match with textinput
         // question idk how to get same uid at each time
-
         if (username === '' || password === '') {
             alert('the username and password cannot be empty')
         } else {
