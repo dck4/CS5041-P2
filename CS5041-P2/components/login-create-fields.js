@@ -44,14 +44,9 @@ export default function LoginCreateFields () {
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
                 username: username,
-                content: ""
-            }, {
-                type: 'text',
-                created:serverTimestamp(),
-                modified: serverTimestamp(),
                 password: password,
                 content: ""
-                }) 
+            }) 
             setUsername("");
             setPassword("");
             // create and go to posts
