@@ -13,11 +13,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
 import { ActivityIndicator } from "react-native-web";
 
-
-// assuming loggin or add a login hook
-// error: user is not defined
-// add a signinAnoymously function.
-
 export default function CreatePostFields() {
 
     // hooks for auth
@@ -31,6 +26,8 @@ export default function CreatePostFields() {
     const [title, setTitle] = useState("");
     const [game, setGame] = useState("");
     const [body, setBody] = useState("");
+    // get the username
+    const [userItem, setUserItem] = useState(() => localStorage.getItem("username"));
 
     const handleOnPostPress = () => {
 
@@ -38,6 +35,7 @@ export default function CreatePostFields() {
             alert("the title, game and content cannot be empty!")
         } else {
             const postData = {
+                author: userItem,
                 game: game,
                 body: body
             }
@@ -50,6 +48,7 @@ export default function CreatePostFields() {
                 content: JSON.stringify(postData)
             })
 
+            // follow the tutorial here.
             setTitle("");
             setGame("");
             setBody("");
@@ -69,9 +68,9 @@ export default function CreatePostFields() {
     const handleOnCancelPress = () => {
 
         // delete all textinput and go back to the post board.
-        setTitle("");
-        setGame("");
-        setBody("");
+        // setTitle("");
+        // setGame("");
+        // setBody("");
 
         navigation.navigate('Home');
     }
