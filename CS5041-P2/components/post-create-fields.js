@@ -14,11 +14,11 @@ import { signInAnonymously } from "firebase/auth";
 
 // assuming loggin or add a login hook
 // error: user is not defined
-// add a signin
+// add a signinAnoymously function.
 
 export default function CreatePostFields() {
 
-    // hooks
+    // hooks for auth
     const [user, authLoading, authError] = useAuthState(auth);
 
     // login
@@ -30,37 +30,47 @@ export default function CreatePostFields() {
     const [game, setGame] = useState("");
     const [body, setBody] = useState("");
 
-    // can only write one object each time, or can divided in 3 parts.
-
     const handleOnPostPress = () => {
+
         if (title === '' || game === '' || body === '') {
             alert("the title, game and content cannot be empty!")
         } else {
+            const postData = {
+                game: game,
+                body: body
+            }
+
             push(child(user ? ref(database) : null, `/public/${user.uid}`), {
-                type: 'post',
+                type: 'F9l0yQfYrjSS7en6l32e-posts',
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
                 message: title,
-                content: game + "|" + body
+                content: JSON.stringify(postData)
             })
-
-        // can only write one object each time, or can divided in 3 parts.
 
             setTitle("");
             setGame("");
             setBody("");
 
-            // check for writing
+            // check for writing, if the post board finished, just delete it.
             get(child(user ? ref(database): null, `/public/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     console.log(snapshot.val());
                 }
             })
+
+            // jump to the post board and the new post will be showed
             //navigation.navigate('Home');
         }   
     }
 
     const handleOnCancelPress = () => {
+
+        // delete all textinput and go back to the post board.
+        setTitle("");
+        setGame("");
+        setBody("");
+
         navigation.navigate('Home');
     }
 
