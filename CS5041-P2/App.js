@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import * as React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -22,8 +23,18 @@ export default function App() {
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
       <Stack.Navigator screenOptions={{header:Banner}}>
         <Stack.Screen name="Home" component={Main}/>
-        <Stack.Screen name="LoginCreate" component={LoginCreate}/>
-        <Stack.Screen name="CreatePost" component={CreatePost}/>
+        <Stack.Screen name="LoginCreate" component={LoginCreate} 
+        options={{title: 'Login with a username',
+        headerRight: () => (
+            <Button onPress={() => navigation.navigate('Home')}
+            title="Sign in without username"
+            color="#f4511e"
+            />
+        ),
+        }}/>
+        <Stack.Screen name="CreatePost" component={CreatePost}
+          options={{title: 'Create your post'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
