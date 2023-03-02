@@ -14,7 +14,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useEffect, } from "react";
 import { ActivityIndicator } from "react-native-web";
 import React from "react";
-import { child, push, ref, serverTimestamp } from "firebase/database";
+import { child, get, push, ref, serverTimestamp } from "firebase/database";
+import { useList } from 'react-firebase-hooks/database';
 
 
 export default function LoginCreateFields () {
@@ -27,6 +28,7 @@ export default function LoginCreateFields () {
         signInAnonymously(auth);
     }, []);
 
+
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');    
     
@@ -34,6 +36,8 @@ export default function LoginCreateFields () {
         // i fail to use auth-sign in/up function, error: auth/operation-not-allowed
         
         // write the username and password to the private as the user information
+        // seems the only way to write data successfully is to follow the format of the instructions
+
         // the username and password cannot be empty
         
         if (username === '' || password === '') {
@@ -43,9 +47,8 @@ export default function LoginCreateFields () {
                 type: 'text',
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
-                username: username,
-                password: password,
-                content: ""
+                message: username,
+                content: password
             }) 
             setUsername("");
             setPassword("");
@@ -60,9 +63,15 @@ export default function LoginCreateFields () {
         if (username === '' || password === '') {
             alert('the username and password cannot be empty')
         } else {
-
+            // check wether the create work
+            get(child(user ? ref(database): null, `/private/${user.uid}`)).then ((snapshot) => {
+                if (snapshot.exists()) {
+                    console.log(snapshot.val());
+                }
+            })
         }
     }
+    
 
     return (
         <SafeAreaView>
@@ -84,7 +93,7 @@ export default function LoginCreateFields () {
                         value={password} 
                         onChangeText={password => setPassword(password)}></TextInput>
                     <StatusBar style="auto" />
-                    <Button >Sign in</Button>
+                    <Button onPress={handleOnLoginPress}>Sign in</Button>
                     <Button onPress={handleOnCreatePress}>Create</Button>
                 </>
                 }
