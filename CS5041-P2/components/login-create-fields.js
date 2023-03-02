@@ -1,3 +1,4 @@
+
 // this should return the form used to log in - the username and password fields, and the "create" and "log in" buttons
 // create sends a message to the database adding the user and setting a UID
 
@@ -43,7 +44,7 @@ export default function LoginCreateFields () {
             alert('the username and password cannot be empty')
         } else {
             push(child(user ? ref(database): null, `/private/${user.uid}`), {
-                type: 'text',
+                type: 'account',
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
                 message: username,
