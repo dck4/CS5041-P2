@@ -14,10 +14,12 @@
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@react-navigation/stack": "^6.3.16",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "expo": "~48.0.4",
     "expo-router": "^1.0.1",
     "expo-status-bar": "~1.4.4",
     "firebase": "^9.17.1",
+    "localstorage-polyfill": "^1.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-firebase-hooks": "^5.1.1",
@@ -28,7 +30,8 @@
     "react-native-web": "~0.18.10",
     "react-router": "^6.8.1",
     "react-router-dom": "^6.8.1",
-    "react-router-native": "^6.8.1"
+    "react-router-native": "^6.8.1",
+    "undefined": "@react-native/assets-registry/registry"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

@@ -7,7 +7,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Main from "./pages/posts"
 import LoginCreate from "./pages/login-create"
 import CreatePost from "./pages/create-post"
-
+import Banner from "./components/banner";
+import { Header } from '@react-navigation/stack';
 
 const Stack = createNativeStackNavigator();
 
@@ -18,9 +19,9 @@ export default function App() {
   };
 
   return (
-
-    <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-      <Stack.Navigator>
+    <NavigationContainer>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
+      <Stack.Navigator screenOptions={{header:Banner}}>
         <Stack.Screen name="Home" component={Main}/>
         <Stack.Screen name="LoginCreate" component={LoginCreate} 
         options={{title: 'Login with a username',
@@ -39,11 +40,3 @@ export default function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
