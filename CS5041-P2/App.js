@@ -18,20 +18,22 @@ export default function App() {
   };
 
   return (
+
     <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
-      <Text>F</Text>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Main}/>
         <Stack.Screen name="LoginCreate" component={LoginCreate} 
-        options={{title: 'Login or Create a New Account',
+        options={{title: 'Login with a username',
         headerRight: () => (
             <Button onPress={() => navigation.navigate('Home')}
-            title="View without login"
+            title="Sign in without username"
             color="#f4511e"
             />
         ),
         }}/>
-        <Stack.Screen name="CreatePost" component={CreatePost}/>
+        <Stack.Screen name="CreatePost" component={CreatePost}
+          options={{title: 'Create your post'}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
