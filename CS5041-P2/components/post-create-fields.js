@@ -12,6 +12,7 @@ import { Button, Text } from "react-native-paper";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
 import { ActivityIndicator } from "react-native-web";
+import { postkey } from "../keys";
 
 export default function CreatePostFields({ navigation }) {
 
@@ -41,7 +42,7 @@ export default function CreatePostFields({ navigation }) {
             }
 
             push(child(user ? ref(database) : null, `/public/${user.uid}`), {
-                type: 'F9l0yQfYrjSS7en6l32e-posts',
+                type: postkey,
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
                 message: title,

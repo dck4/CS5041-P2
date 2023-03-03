@@ -6,7 +6,6 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
     banner: {
         height:95,
-        width:"100vw",
         backgroundColor:"#784444",
         alignItems:"center",
         justifyContent:"space-between",

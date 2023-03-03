@@ -9,6 +9,8 @@ import LoginCreate from "./pages/login-create"
 import CreatePost from "./pages/create-post"
 import Banner from "./components/banner";
 import { Header } from '@react-navigation/stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,24 +21,26 @@ export default function App() {
   };
 
   return (
-    <NavigationContainer>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
-      <Stack.Navigator screenOptions={{header:Banner}}>
-        <Stack.Screen name="Home" component={Main}/>
-        <Stack.Screen name="LoginCreate" component={LoginCreate} 
-        options={{title: 'Login with a username',
-        headerRight: () => (
-            <Button onPress={() => navigation.navigate('Home')}
-            title="Sign in without username"
-            color="#f4511e"
-            />
-        ),
-        }}/>
-        <Stack.Screen name="CreatePost" component={CreatePost}
-          options={{title: 'Create your post'}}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
+        <Stack.Navigator screenOptions={{header:Banner}}>
+          <Stack.Screen name="Home" component={Main}/>
+          <Stack.Screen name="LoginCreate" component={LoginCreate} 
+          options={{title: 'Login with a username',
+          headerRight: () => (
+              <Button onPress={() => navigation.navigate('Home')}
+              title="Sign in without username"
+              color="#f4511e"
+              />
+          ),
+          }}/>
+          <Stack.Screen name="CreatePost" component={CreatePost}
+            options={{title: 'Create your post'}}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
 
