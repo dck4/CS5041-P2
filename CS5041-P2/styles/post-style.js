@@ -14,5 +14,7 @@ export const styles = StyleSheet.create({
         backgroundColor: "#26653A",
         paddingHorizontal: 20,
         paddingVertical: 10,
+        width:100,
+        height:60
     }
 })
