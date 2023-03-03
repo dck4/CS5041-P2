@@ -5,7 +5,7 @@
 import { useEffect, useState } from "react";
 import { StatusBar } from 'expo-status-bar';
 import { ref, get, push, child, serverTimestamp } from 'firebase/database'
-import { auth, database } from '../Firebase';
+import { auth, database } from '../firebase';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { TextInput } from "react-native-gesture-handler";
 import { Button, Text } from "react-native-paper";
@@ -13,7 +13,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
 import { ActivityIndicator } from "react-native-web";
 
-export default function CreatePostFields() {
+export default function CreatePostFields({ navigation }) {
 
     // hooks for auth
     const [user, authLoading, authError] = useAuthState(auth);
@@ -61,7 +61,7 @@ export default function CreatePostFields() {
             })
 
             // jump to the post board and the new post will be showed
-            //navigation.navigate('Home');
+            navigation.push('Home');
         }   
     }
 
@@ -72,7 +72,7 @@ export default function CreatePostFields() {
         // setGame("");
         // setBody("");
 
-        navigation.navigate('Home');
+        navigation.goBack();
     }
 
     return (

@@ -8,6 +8,6 @@ export default function LoginCreate({ navigation }) {
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Login or create account</Text>
         // </View>
-        <LoginCreateFields></LoginCreateFields>
+        <LoginCreateFields navigation={navigation}></LoginCreateFields>
     )
 }

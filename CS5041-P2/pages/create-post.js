@@ -8,6 +8,6 @@ export default function CreatePost({ navigation }) {
         // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         //     <Text>Create a post</Text>
         // </View>
-        <CreatePostFields></CreatePostFields>
+        <CreatePostFields navigation={navigation}></CreatePostFields>
     )
 }

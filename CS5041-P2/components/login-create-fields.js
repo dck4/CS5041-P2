@@ -6,7 +6,7 @@ import {  Button, TextInput } from "react-native-paper";
 import React from "react";
 
 
-export default function LoginCreateFields () {
+export default function LoginCreateFields ({ navigation }) {
 
 
     const [username, setUsername] = React.useState('');
@@ -22,7 +22,7 @@ export default function LoginCreateFields () {
             //console.log(localStorage.getItem("username"));
 
             // set the username and go back to post board
-            navigation.navigate('Home');   
+            navigation.push('Home');   
         }
     }
 
