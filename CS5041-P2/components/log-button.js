@@ -5,7 +5,7 @@ import { Text } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 import { styles } from "../styles/main-style.js"
 
-export default function LogButton({ navigation }) {
+export default function LogButton({ navigate }) {
 
     // load the username
     const [userItem, setItem] = useState(() =>  localStorage.getItem("username"));
@@ -24,7 +24,7 @@ export default function LogButton({ navigation }) {
         <View>
             {userItem == null ? 
             (<Button style={styles.logbutton} 
-                onPress={() => navigation.push("LoginCreate")}>
+                onPress={() => navigate("/LoginCreate")}>
                 <Text style={styles.logbuttontext}>Log In</Text>
             </Button>) :
             (<Button style={styles.logbutton} 

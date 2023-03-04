@@ -12,6 +12,7 @@ import { Header } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {NativeRouter as Router, Route, Routes} from 'react-router-native'
 
 const Stack = createNativeStackNavigator();
 
@@ -23,25 +24,14 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer id="1111">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
-
-        <Stack.Navigator screenOptions={{header:Banner}}>
-          <Stack.Screen name="Home" component={Main}/>
-          <Stack.Screen name="LoginCreate" component={LoginCreate} 
-          options={{title: 'Login with a username',
-          headerRight: () => (
-              <Button onPress={() => navigation.navigate('Home')}
-              title="Sign in without username"
-              color="#f4511e"
-              />
-          ),
-          }}/>
-          <Stack.Screen name="CreatePost" component={CreatePost}
-            options={{title: 'Create your post'}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <Router>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+        <Routes>
+          <Route exact path="/" element={<Banner after={<Main/>} />}/>
+          <Route path="LoginCreate" element={<Banner after={<LoginCreate />}/>}/>
+          <Route path="CreatePost" element={<Banner after={<CreatePost />}/>}/>
+        </Routes>
+      </Router>
     </SafeAreaProvider>
   );
 }

@@ -13,8 +13,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
 import { ActivityIndicator } from "react-native-web";
 import { postkey } from "../keys";
+import { useNavigate } from "react-router-native";
 
-export default function CreatePostFields({ navigation }) {
+export default function CreatePostFields({  }) {
+    const navigate = useNavigate
 
     // hooks for auth
     const [user, authLoading, authError] = useAuthState(auth);
@@ -62,7 +64,7 @@ export default function CreatePostFields({ navigation }) {
             })
 
             // jump to the post board and the new post will be showed
-            navigation.push('Home');
+            navigate('/');
         }   
     }
 
@@ -73,7 +75,7 @@ export default function CreatePostFields({ navigation }) {
         // setGame("");
         // setBody("");
 
-        navigation.goBack();
+        navigate('/');
     }
 
     return (

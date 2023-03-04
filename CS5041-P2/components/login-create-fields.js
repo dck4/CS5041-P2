@@ -4,10 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import {  Button, TextInput } from "react-native-paper";
 import React from "react";
+import { useNavigate } from 'react-router-native'
 
+export default function LoginCreateFields ({  }) {
 
-export default function LoginCreateFields ({ navigation }) {
-
+    const navigate = useNavigate()
 
     const [username, setUsername] = React.useState('');
     
@@ -22,7 +23,7 @@ export default function LoginCreateFields ({ navigation }) {
             //console.log(localStorage.getItem("username"));
 
             // set the username and go back to post board
-            navigation.push('Home');   
+            navigate('/');   
         }
     }
 

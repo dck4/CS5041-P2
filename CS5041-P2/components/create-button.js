@@ -1,8 +1,10 @@
 
 import { useState } from 'react'
 import { FAB } from '@rneui/themed'
+import { useNavigate } from 'react-router-native';
 
-export function CreateButton({ navigation }) {
+export function CreateButton({  }) {
+    const navigate = useNavigate()
 
     const [userItem, setUserItem] = useState(() => localStorage.getItem("username"));
 
@@ -10,11 +12,12 @@ export function CreateButton({ navigation }) {
 
         if (userItem == null) {
             alert("You must set a username before creating a post!")
-            navigation.push("LoginCreate")
+            navigate("/LoginCreate")
             return
         }
 
-        navigation.push("CreatePost")
+        // navigation.push("CreatePost")
+        navigate("/CreatePost")
     }
 
     return (
