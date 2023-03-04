@@ -27,7 +27,7 @@ export default function Banner({navigation, route, options, back}) {
     });
 
     return (
-        <View style={[styles.banner,{width:dimensions.width}]}>
+        <View id="banner" style={[styles.banner,{width:dimensions.width}]}>
             <Button onPress={navigation.goBack} style={{}}>
                 <Text style={styles.back}>↩</Text>
             </Button>

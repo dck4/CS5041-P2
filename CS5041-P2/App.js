@@ -11,6 +11,7 @@ import Banner from "./components/banner";
 import { Header } from '@react-navigation/stack';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,8 +23,9 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
+      <NavigationContainer id="1111">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"></link>
+
         <Stack.Navigator screenOptions={{header:Banner}}>
           <Stack.Screen name="Home" component={Main}/>
           <Stack.Screen name="LoginCreate" component={LoginCreate} 

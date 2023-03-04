@@ -41,7 +41,7 @@ export default function CreatePostFields({ navigation }) {
                 body: body
             }
 
-            push(child(user ? ref(database) : null, `/public/${user.uid}`), {
+            push(child(ref(database), `/public/`), {
                 type: postkey,
                 created: serverTimestamp(),
                 modified: serverTimestamp(),

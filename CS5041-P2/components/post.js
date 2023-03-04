@@ -12,7 +12,7 @@ import { styles } from "../styles/post-style"
 // taking the data of the post as input
 // this should use sub-components defined in the "post" folder
 
-export default function Post({ el }) {
+export default function Post({ el, reactions }) {
     const content = JSON.parse(el[1].content)
 
     return (
@@ -24,8 +24,8 @@ export default function Post({ el }) {
             <View style={styles.mainbox}>
                 <PostMain title={el[1].message} body={content.body}/>
                 <View style={styles.reactionbox}>
-                    <Reactions/>
-                    <AddReaction/>
+                    <Reactions reactions={content.reactions}/>
+                    <AddReaction content={content} id={el[0]}/>
                 </View>
             </View>
             <View style={styles.leftContent}/>
