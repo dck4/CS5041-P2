@@ -5,12 +5,16 @@ import { StatusBar } from "expo-status-bar";
 import {  Button, TextInput } from "react-native-paper";
 import React from "react";
 import { useNavigate } from 'react-router-native'
+import { useDispatch } from "react-redux";
+import { loggedin } from "../store";
 
 export default function LoginCreateFields ({  }) {
 
     const navigate = useNavigate()
 
     const [username, setUsername] = React.useState('');
+
+    const dispatch = useDispatch()
     
     const handleOnCreatePress = () => {
 
@@ -18,7 +22,7 @@ export default function LoginCreateFields ({  }) {
         if (username === '' ) {
             alert('the username cannot be empty')
         } else {
-            localStorage.setItem("username", username);
+            dispatch(loggedin(username));
             // check storage
             //console.log(localStorage.getItem("username"));
 

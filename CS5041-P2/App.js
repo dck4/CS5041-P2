@@ -13,6 +13,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {NativeRouter as Router, Route, Routes} from 'react-router-native'
+import { Provider } from 'react-redux';
+import { store } from './store';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,14 +26,16 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <Router>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
-        <Routes>
-          <Route exact path="/" element={<Banner after={<Main/>} />}/>
-          <Route path="LoginCreate" element={<Banner after={<LoginCreate />}/>}/>
-          <Route path="CreatePost" element={<Banner after={<CreatePost />}/>}/>
-        </Routes>
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+          <Routes>
+            <Route exact path="/" element={<Banner after={<Main/>} />}/>
+            <Route path="LoginCreate" element={<Banner after={<LoginCreate />}/>}/>
+            <Route path="CreatePost" element={<Banner after={<CreatePost />}/>}/>
+          </Routes>
+        </Router>
+      </Provider>
     </SafeAreaProvider>
   );
 }

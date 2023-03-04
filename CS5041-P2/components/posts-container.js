@@ -19,6 +19,7 @@ export function PostsContainer(props) {
         return () => subscription?.remove();
     });
 
+
     return (
         <View style={{height:dimensions.height-95,backgroundColor:"#cac8ce",width:dimensions.width}}>
             {props.children}

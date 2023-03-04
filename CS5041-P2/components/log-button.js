@@ -4,36 +4,40 @@ import { View } from 'react-native';
 import { Text } from 'react-native-paper';
 import { Button } from 'react-native-paper';
 import { styles } from "../styles/main-style.js"
+import { useSelector, useDispatch } from 'react-redux';
+import { loggedout } from '../store.js';
+
+const selectUsername = state => state.username
 
 export default function LogButton({ navigate }) {
 
-    // load the username
-    const [userItem, setItem] = useState(() =>  localStorage.getItem("username"));
-    // create a copy as a local variable - we will use this for the display text
-    const [username, setUsername] = useState(userItem)
+    // get and subscribe to the shared username state
+    const username = useSelector(selectUsername)
 
-    // this is for updating the display text of the button
-    const handleUsername = (name) => setUsername(name)
+    // create a copy as a local variable - we will use this for the display text
+    const [logout, setLogout] = useState(false)
+    
+    const dispatch = useDispatch()
 
     const logOut = () => {
-        localStorage.removeItem("username")
-        setItem(null)
+        setLogout(false)
+        dispatch(loggedout())
     }
 
     return (
         <View>
-            {userItem == null ? 
+            {username == null ? 
             (<Button style={styles.logbutton} 
                 onPress={() => navigate("/LoginCreate")}>
                 <Text style={styles.logbuttontext}>Log In</Text>
             </Button>) :
             (<Button style={styles.logbutton} 
                 onPress={logOut}
-                // change text to display "log out" when hovering
-                onMouseEnter={() => handleUsername("Log Out")} 
                 // or the username when not hovering
-                onMouseLeave={() => handleUsername(userItem)}>
-                <Text style={styles.logbuttontext}>{username}</Text>
+                onMouseLeave={() => setLogout(false)}
+                // change text to display "log out" when hovering
+                onMouseEnter={() => setLogout(true)} >
+                <Text style={styles.logbuttontext}>{logout ? "Log Out" : username}</Text>
             </Button>)}
         </View>
     )

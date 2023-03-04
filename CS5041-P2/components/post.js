@@ -7,12 +7,13 @@ import { PostMain } from "./post/main"
 import { Reactions } from "./post/reaction-display"
 import { AddReaction } from "./post/reaction-add"
 import { styles } from "../styles/post-style"
+import { GameDetails } from './post/game-details';
 
 // this should return the display of an entire post
 // taking the data of the post as input
 // this should use sub-components defined in the "post" folder
 
-export default function Post({ el, reactions }) {
+export default function Post({ el, reactions, gameList }) {
     const content = JSON.parse(el[1].content)
 
     return (
@@ -22,13 +23,15 @@ export default function Post({ el, reactions }) {
                 <Game game={content.game}/>
             </View>
             <View style={styles.mainbox}>
-                <PostMain title={el[1].message} body={content.body}/>
+                <View style={{flexDirection:"row"}}>
+                    <PostMain title={el[1].message} body={content.body}/>
+                </View>
                 <View style={styles.reactionbox}>
-                    <Reactions reactions={content.reactions}/>
-                    <AddReaction content={content} id={el[0]}/>
+                    <Reactions reactions={reactions}/>
+                    <AddReaction reactions={reactions} id={el[0]}/>
                 </View>
             </View>
-            <View style={styles.leftContent}/>
+            <GameDetails game={content.game} gameList={gameList} style={styles.leftContent}/>
         </View>
     )
 }

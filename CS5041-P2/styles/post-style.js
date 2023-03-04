@@ -37,7 +37,16 @@ export const styles = StyleSheet.create({
     maintext: {
         padding: 20,
         paddingTop: 15,
-        fontFamily: "Raleway"
+        fontFamily: "Raleway",
+        flex: 1, 
+        flexWrap: 'wrap',
+        textAlign:"justify"
+    },
+    gametext: {
+        padding: 10,
+        paddingTop: 15,
+        fontFamily: "Raleway",
+        textAlign:"left"
     },
     title: {
         paddingBottom: 0,
@@ -46,6 +55,9 @@ export const styles = StyleSheet.create({
     },
     body: {
         fontSize:16
+    },
+    gamebody: {
+        fontSize:14
     },
     postcontainer: {
         flexDirection:"row",
@@ -60,13 +72,24 @@ export const styles = StyleSheet.create({
         backgroundColor:"#efeef0",
         alignSelf:"stretch"
     },
+    gamebox: {
+        flex:1,
+        width:200,
+        maxWidth:200,
+        justifyContent:"left",
+        alignSelf:"stretch"
+    },
     leftContent: {
         justifyContent:"right",
         width:100
     },
+    steamdetails: {
+        width:200
+    },
     reactionbox: {
         flexDirection:"row",
         justifyContent:"right",
+        alignSelf:"flex-end",
         height:40
     }
 })

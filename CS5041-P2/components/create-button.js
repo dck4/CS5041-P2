@@ -2,11 +2,14 @@
 import { useState } from 'react'
 import { FAB } from '@rneui/themed'
 import { useNavigate } from 'react-router-native';
+import { useSelector } from 'react-redux';
+
+const selectUsername = state => state.username
 
 export function CreateButton({  }) {
     const navigate = useNavigate()
 
-    const [userItem, setUserItem] = useState(() => localStorage.getItem("username"));
+    const userItem = useSelector(selectUsername)
 
     const goToCreate = () => {
 

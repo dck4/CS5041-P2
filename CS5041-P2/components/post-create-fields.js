@@ -16,7 +16,7 @@ import { postkey } from "../keys";
 import { useNavigate } from "react-router-native";
 
 export default function CreatePostFields({  }) {
-    const navigate = useNavigate
+    const navigate = useNavigate()
 
     // hooks for auth
     const [user, authLoading, authError] = useAuthState(auth);
@@ -43,7 +43,7 @@ export default function CreatePostFields({  }) {
                 body: body
             }
 
-            push(child(ref(database), `/public/`), {
+            push(child(user ? ref(database) : null, `/public/${user.uid}`), {
                 type: postkey,
                 created: serverTimestamp(),
                 modified: serverTimestamp(),
@@ -57,7 +57,7 @@ export default function CreatePostFields({  }) {
             setBody("");
 
             // check for writing, if the post board finished, just delete it.
-            get(child(user ? ref(database): null, `/public/${user.uid}`)).then((snapshot) => {
+            get(child(user ? ref(database) : null, `/public/${user.uid}`)).then((snapshot) => {
                 if (snapshot.exists()) {
                     console.log(snapshot.val());
                 }

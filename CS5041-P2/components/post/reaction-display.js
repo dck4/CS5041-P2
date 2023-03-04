@@ -2,6 +2,7 @@
 // should return a display of all reactions on the post
 
 import { View } from "react-native"
+import { Text } from "react-native-paper"
 import { Button } from "react-native-paper"
 import { reactionlist } from "./emojis"
 
@@ -23,7 +24,7 @@ export function Reactions({ reactions }) {
             {reactions != undefined ? 
                 <View style={{flexDirection:"row"}}>
                     {Object.entries(reacts).map(([react,count], i) =>
-                        <Text style={{fontSize:16,fontFamily:"Raleway"}} key={i}>{react} {count}</Text>
+                        <Text style={{fontSize:24,fontFamily:"Arial",verticalAlign:"middle"}} key={i}>{react}{count} </Text>
                     )}
                 </View>
             :
