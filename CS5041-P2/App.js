@@ -29,14 +29,7 @@ export default function App() {
         <Stack.Navigator screenOptions={{header:Banner}}>
           <Stack.Screen name="Home" component={Main}/>
           <Stack.Screen name="LoginCreate" component={LoginCreate} 
-          options={{title: 'Login with a username',
-          headerRight: () => (
-              <Button onPress={() => navigation.navigate('Home')}
-              title="Sign in without username"
-              color="#f4511e"
-              />
-          ),
-          }}/>
+            options={{title: 'Login with a username'}}/>
           <Stack.Screen name="CreatePost" component={CreatePost}
             options={{title: 'Create your post'}}
           />
