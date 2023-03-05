@@ -8,7 +8,7 @@ const createPostStyles = StyleSheet.create({
         justifyContent: "center"
     },
 
-    texthead: {
+    textHead: {
         marginTop: 10,
         marginLeft: 10,
         marginRight: 10,
@@ -16,7 +16,7 @@ const createPostStyles = StyleSheet.create({
         fontSize: 24
     },
 
-    titleinput: {
+    titleInput: {
         marginTop:10,
         marginBottom: 40,
         backgroundColor: 'white',
@@ -28,7 +28,7 @@ const createPostStyles = StyleSheet.create({
         marginRight: 10
     },
 
-    postinput: {
+    postInput: {
         marginTop:10,
         marginBottom: 20,
         backgroundColor: 'white',
