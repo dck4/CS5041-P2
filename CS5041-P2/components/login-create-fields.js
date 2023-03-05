@@ -44,7 +44,7 @@ export default function LoginCreateFields ({  }) {
                 onChangeText={username => setUsername(username)} 
             ></TextInput>
             <StatusBar style="auto" />
-            <Button style={logInStyles.button} onPress={handleOnCreatePress}>Create Username</Button>
+            <Button style={logInStyles.button} onPress={handleOnCreatePress}>Login</Button>
          </SafeAreaView>
     )
 }
