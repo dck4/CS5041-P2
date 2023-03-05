@@ -14,6 +14,7 @@ import { signInAnonymously } from "firebase/auth";
 import { ActivityIndicator } from "react-native-web";
 import { postkey } from "../keys";
 import { useNavigate } from "react-router-native";
+import createPostStyles from "../styles/create-style";
 
 export default function CreatePostFields({  }) {
     const navigate = useNavigate()
@@ -79,7 +80,7 @@ export default function CreatePostFields({  }) {
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={createPostStyles.view}>
             {/* waiting for signing in */}
             {authLoading ? 
                 <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -87,21 +88,29 @@ export default function CreatePostFields({  }) {
                     <Text>loading...</Text>
                 </SafeAreaView> :
                 <>
+                    <Text style={createPostStyles.textHead}>Post Title</Text>
                     <TextInput 
                         label="Title"
                         value={title}
+                        style={createPostStyles.titleInput}
                         onChangeText={title => setTitle(title)}></TextInput>
+                    <Text style={createPostStyles.textHead}>Game</Text>
                     <TextInput
                         label="Game"
                         value={game}
+                        style={createPostStyles.titleInput}
                         onChangeText={game => setGame(game)}></TextInput>
+                    <Text style={createPostStyles.textHead}>Content</Text>
                     <TextInput
                         label="Content"
                         value={body}
+                        multiline={true}
+                        textAlignVertical="top"
+                        style={createPostStyles.postInput}
                         onChangeText={body => setBody(body)}></TextInput>
                     <StatusBar style="auto" />
-                    <Button onPress={handleOnPostPress}>Post</Button>
-                    <Button onPress={handleOnCancelPress}>Cancel</Button>
+                    <Button style={createPostStyles.button} onPress={handleOnPostPress}>Post</Button>
+                    <Button style={createPostStyles.button} onPress={handleOnCancelPress}>Cancel</Button>
                 </>
             }
         </SafeAreaView>
