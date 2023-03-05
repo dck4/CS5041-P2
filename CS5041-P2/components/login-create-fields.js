@@ -40,7 +40,7 @@ export default function LoginCreateFields ({  }) {
                 label="Username" 
                 value={username}
                 mode="outlined"
-                style={logInStyles.usernameinput}
+                style={logInStyles.usernameInput}
                 onChangeText={username => setUsername(username)} 
             ></TextInput>
             <StatusBar style="auto" />
