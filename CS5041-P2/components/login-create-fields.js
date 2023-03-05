@@ -7,6 +7,7 @@ import React from "react";
 import { useNavigate } from 'react-router-native'
 import { useDispatch } from "react-redux";
 import { loggedin } from "../store";
+import logInStyles from "../styles/login-style";
 
 export default function LoginCreateFields ({  }) {
 
@@ -33,15 +34,17 @@ export default function LoginCreateFields ({  }) {
 
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={logInStyles.view}>
             {/* setUsername can only be done here */}
             <TextInput 
                 label="Username" 
                 value={username}
+                mode="outlined"
+                style={logInStyles.usernameinput}
                 onChangeText={username => setUsername(username)} 
             ></TextInput>
             <StatusBar style="auto" />
-            <Button onPress={handleOnCreatePress}>Create Username</Button>
+            <Button style={logInStyles.button} onPress={handleOnCreatePress}>Create Username</Button>
          </SafeAreaView>
     )
 }
