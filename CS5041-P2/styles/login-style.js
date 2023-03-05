@@ -9,7 +9,7 @@ const logInStyles = StyleSheet.create({
         alignItems: "center"
     },
 
-    usernameinput: {
+    usernameInput: {
         margin: 20,
         height: 40,
         width: "50%",
