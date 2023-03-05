@@ -15,6 +15,7 @@ import { GameDetails } from './post/game-details';
 
 export default function Post({ el, reactions, gameList }) {
     const content = JSON.parse(el[1].content)
+    console.log(content.body)
 
     return (
         <View style={styles.postcontainer}>
@@ -24,7 +25,7 @@ export default function Post({ el, reactions, gameList }) {
             </View>
             <View style={styles.mainbox}>
                 <View style={{flexDirection:"row"}}>
-                    <PostMain title={el[1].message} body={content.body}/>
+                    <PostMain title={el[1].message} body={typeof content.body == 'string' ? content.body : ""}/>
                 </View>
                 <View style={styles.reactionbox}>
                     <Reactions reactions={reactions}/>

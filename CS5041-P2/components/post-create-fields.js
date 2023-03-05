@@ -7,7 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { ref, get, push, child, serverTimestamp } from 'firebase/database'
 import { auth, database } from '../firebase';
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput } from "react-native-paper";
 import { Button, Text } from "react-native-paper";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
@@ -15,6 +15,13 @@ import { ActivityIndicator } from "react-native-web";
 import { postkey } from "../keys";
 import { useNavigate } from "react-router-native";
 import createPostStyles from "../styles/create-style";
+import ReactDOM from 'react-dom';
+import {EditorState,convertToRaw} from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg'
+import draftToHtml from "draftjs-to-html";
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { View } from "react-native";
+import { Dimensions } from "react-native";
 
 export default function CreatePostFields({  }) {
     const navigate = useNavigate()
@@ -29,7 +36,7 @@ export default function CreatePostFields({  }) {
 
     const [title, setTitle] = useState("");
     const [game, setGame] = useState("");
-    const [body, setBody] = useState("");
+    const [body, setBody] = useState(() => EditorState.createEmpty());
     // get the username
     const [userItem, setUserItem] = useState(() => localStorage.getItem("username"));
 
@@ -41,7 +48,7 @@ export default function CreatePostFields({  }) {
             const postData = {
                 author: userItem,
                 game: game,
-                body: body
+                body: draftToHtml(convertToRaw(body.getCurrentContent()))
             }
 
             push(child(user ? ref(database) : null, `/public/${user.uid}`), {
@@ -55,7 +62,7 @@ export default function CreatePostFields({  }) {
             // follow the tutorial here.
             setTitle("");
             setGame("");
-            setBody("");
+            setBody(() => EditorState.createEmpty());
 
             // check for writing, if the post board finished, just delete it.
             get(child(user ? ref(database) : null, `/public/${user.uid}`)).then((snapshot) => {
@@ -79,8 +86,24 @@ export default function CreatePostFields({  }) {
         navigate('/');
     }
 
+    const windowDimensions = Dimensions.get('window')
+    const [dimensions, setDimensions] = useState(windowDimensions);
+
+    useEffect(() => {
+        const subscription = Dimensions.addEventListener(
+        'change',
+        (window) => {
+            setDimensions(window);
+        },
+        );
+        return () => subscription?.remove();
+    });
+
     return (
-        <SafeAreaView style={createPostStyles.view}>
+        <SafeAreaView style={[createPostStyles.view,{height:dimensions.height-95,width:dimensions.width}]}>
+            <View/>
+            <View style={{width:800}}>
+            <Text style={createPostStyles.title}>Create a New Post</Text>
             {/* waiting for signing in */}
             {authLoading ? 
                 <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -88,31 +111,27 @@ export default function CreatePostFields({  }) {
                     <Text>loading...</Text>
                 </SafeAreaView> :
                 <>
-                    <Text style={createPostStyles.textHead}>Post Title</Text>
                     <TextInput 
-                        label="Title"
+                        placeholder="Title"
                         value={title}
                         style={createPostStyles.titleInput}
                         onChangeText={title => setTitle(title)}></TextInput>
-                    <Text style={createPostStyles.textHead}>Game</Text>
                     <TextInput
-                        label="Game"
+                        placeholder="Game"
                         value={game}
                         style={createPostStyles.titleInput}
                         onChangeText={game => setGame(game)}></TextInput>
-                    <Text style={createPostStyles.textHead}>Content</Text>
-                    <TextInput
-                        label="Content"
-                        value={body}
-                        multiline={true}
-                        textAlignVertical="top"
-                        style={createPostStyles.postInput}
-                        onChangeText={body => setBody(body)}></TextInput>
+                    <Editor placeholder="Body" editorState={body} onEditorStateChange={setBody} editorStyle={createPostStyles.rtf}/>
+                    <View style={{flexDirection:"row",width:"100%",justifyContent:"center"}}>
+                        <Button style={[createPostStyles.button,createPostStyles.createbutton]} onPress={handleOnPostPress}>
+                            <Text style={[createPostStyles.buttontext,createPostStyles.createtext]}>Post</Text></Button>
+                        <Button style={createPostStyles.button} onPress={handleOnCancelPress}><Text style={createPostStyles.buttontext}>Cancel</Text></Button>
+                    </View>
                     <StatusBar style="auto" />
-                    <Button style={createPostStyles.button} onPress={handleOnPostPress}>Post</Button>
-                    <Button style={createPostStyles.button} onPress={handleOnCancelPress}>Cancel</Button>
                 </>
             }
+            </View>
+            <View/>
         </SafeAreaView>
     )
 }

@@ -5,7 +5,10 @@ import { StyleSheet } from "react-native-web";
 const createPostStyles = StyleSheet.create({
     
     view: {
-        justifyContent: "center"
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor:"#8184b2",
+        flexDirection:"row"
     },
 
     textHead: {
@@ -13,41 +16,61 @@ const createPostStyles = StyleSheet.create({
         marginLeft: 10,
         marginRight: 10,
         marginBottom: 2,
-        fontSize: 24
+        fontSize: 24,
+        fontFamily:"Raleway"
     },
 
     titleInput: {
-        marginTop:10,
-        marginBottom: 40,
+        marginBottom:10,
         backgroundColor: 'white',
-        borderWidth: 2,
-        borderColor: 'grey',
-        height: 40,
         fontSize: 24,
-        marginLeft: 10,
-        marginRight: 10
+        placeholderTextColor: "grey",
     },
 
     postInput: {
         marginTop:10,
-        marginBottom: 20,
         backgroundColor: 'white',
         borderWidth: 2,
         borderColor: 'grey',
         height: 100,
-        fontSize: 20,
-        marginLeft: 10,
-        marginRight: 10
+        fontSize: 20
     },
 
     button: {
         backgroundColor:"#DDDDDD",
-        height: 50,
-        width: 100,
+        height: 60,
+        width: 120,
         borderRadius: 15,
         marginTop: 20,
-        marginLeft: "45%",
+        marginLeft:30,
+        marginRight:30,
+        // marginLeft: "45%",
         justifyContent: "center",        
+    },
+
+    createbutton: {
+        backgroundColor:"#656bca"
+    },
+
+    rtf: {
+        minHeight:400,
+        backgroundColor:"white"
+    },
+    
+    buttontext: {
+        fontFamily:"Raleway",
+        fontSize:24
+    },
+
+    createtext: {
+        color:"white"
+    },
+
+    title: {
+        fontFamily:"Raleway",
+        color:"white",
+        fontSize:28,
+        maginBottom:10
     }
 });
 

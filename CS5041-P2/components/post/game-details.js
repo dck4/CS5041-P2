@@ -21,6 +21,7 @@ export function GameDetails({game, gameList}) {
     const [gameInfo, setGameInfo] = useState(null);
 
     useEffect(() => {
+        if (gameList == null) return
         let gameId = gameList[game.replace(/\W/g, '').trim().toLowerCase()]
         if (gameId == null) {
             setGameInfo(null)
@@ -32,7 +33,7 @@ export function GameDetails({game, gameList}) {
             .then(response => response.json())
             .then(data => setGameInfo(data));
 
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    // setting game list as dependency means game info will load once the game list has loaded
     }, [gameList]);
 
     return (

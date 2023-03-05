@@ -6,7 +6,9 @@ import { StyleSheet } from "react-native-web";
 const logInStyles = StyleSheet.create({
     view: {
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#784444",
+        flexDirection:"row"
     },
 
     usernameInput: {
@@ -25,6 +27,25 @@ const logInStyles = StyleSheet.create({
         margin: 10,
         justifyContent: "center"
         
+    },
+
+    loginbox: {
+        justifyContent: "center",
+        alignItems: "center",
+        width:800,
+        height:400,
+        backgroundColor:"#8c7777"
+    },
+
+    buttontext: {
+        fontFamily:"Raleway",
+        fontSize:24
+    },
+
+    titletext: {
+        fontFamily:"Raleway",
+        color:"white",
+        fontSize:28
     }
 });
 

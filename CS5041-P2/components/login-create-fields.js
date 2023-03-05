@@ -8,6 +8,9 @@ import { useNavigate } from 'react-router-native'
 import { useDispatch } from "react-redux";
 import { loggedin } from "../store";
 import logInStyles from "../styles/login-style";
+import { View } from "react-native";
+import { Text } from "react-native-paper";
+import { Dimensions } from "react-native";
 
 export default function LoginCreateFields ({  }) {
 
@@ -32,19 +35,40 @@ export default function LoginCreateFields ({  }) {
         }
     }
 
+    const windowDimensions = Dimensions.get('window')
+    const [dimensions, setDimensions] = React.useState(windowDimensions);
+
+    React.useEffect(() => {
+        const subscription = Dimensions.addEventListener(
+        'change',
+        (window) => {
+            setDimensions(window);
+        },
+        );
+        return () => subscription?.remove();
+    });
 
     return (
-        <SafeAreaView style={logInStyles.view}>
-            {/* setUsername can only be done here */}
-            <TextInput 
-                label="Username" 
-                value={username}
-                mode="outlined"
-                style={logInStyles.usernameInput}
-                onChangeText={username => setUsername(username)} 
-            ></TextInput>
-            <StatusBar style="auto" />
-            <Button style={logInStyles.button} onPress={handleOnCreatePress}>Login</Button>
+        <SafeAreaView style={[logInStyles.view,{height:dimensions.height-95,width:dimensions.width}]}>
+            <View/>
+            <View>
+                <View/>
+                {/* setUsername can only be done here */}
+                <View style={logInStyles.loginbox}>
+                    <Text style={logInStyles.titletext}>Set a Username for your Posts</Text>
+                    <TextInput 
+                        label="Username"
+                        value={username}
+                        mode="outlined"
+                        style={logInStyles.usernameInput}
+                        onChangeText={username => setUsername(username)} 
+                    ></TextInput>
+                    <StatusBar style="auto" />
+                    <Button style={logInStyles.button} onPress={handleOnCreatePress}><Text style={logInStyles.buttontext}>Log In</Text></Button>
+                </View>
+                <View/>
+            </View>
+            <View/>
          </SafeAreaView>
     )
 }

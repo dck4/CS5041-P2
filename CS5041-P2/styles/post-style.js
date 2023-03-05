@@ -57,7 +57,12 @@ export const styles = StyleSheet.create({
         fontSize:16
     },
     gamebody: {
-        fontSize:14
+        fontSize:14,
+    },
+    gamegenres: {
+        fontSize:13,
+        fontFamily:"Raleway",
+        paddingBottom:5,
     },
     postcontainer: {
         flexDirection:"row",
