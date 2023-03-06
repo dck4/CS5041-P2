@@ -15,7 +15,6 @@ import { ActivityIndicator } from "react-native-web";
 import { postkey } from "../keys";
 import { useNavigate } from "react-router-native";
 import createPostStyles from "../styles/create-style";
-import ReactDOM from 'react-dom';
 import {EditorState,convertToRaw} from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg'
 import draftToHtml from "draftjs-to-html";

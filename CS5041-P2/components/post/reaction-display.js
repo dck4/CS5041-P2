@@ -3,8 +3,6 @@
 
 import { View } from "react-native"
 import { Text } from "react-native-paper"
-import { Button } from "react-native-paper"
-import { reactionlist } from "./emojis"
 
 
 export function Reactions({ reactions }) {

@@ -1,5 +1,4 @@
 
-import { useState } from 'react'
 import { FAB } from '@rneui/themed'
 import { useNavigate } from 'react-router-native';
 import { useSelector } from 'react-redux';

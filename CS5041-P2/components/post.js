@@ -1,6 +1,5 @@
 
-import { Text } from 'react-native-paper';
-import { View, Button } from "react-native";
+import { View } from "react-native";
 import { Meta } from "./post/meta"
 import { Game } from "./post/game"
 import { PostMain } from "./post/main"

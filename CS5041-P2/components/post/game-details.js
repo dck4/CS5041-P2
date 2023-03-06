@@ -1,7 +1,6 @@
+
 import { useEffect, useState } from "react";
 import { View } from "react-native";
-// import SteamFetchAPI from "steam-fetch-api";
-// import SteamAPI from "steamapi";
 import { styles } from "../../styles/post-style";
 import { SteamDetails } from "./steam-details";
 

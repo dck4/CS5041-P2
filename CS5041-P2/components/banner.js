@@ -7,7 +7,6 @@ import { styles } from "../styles/main-style.js"
 import { Dimensions } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-native';
-import { Link } from 'react-router-native';
 
 // this displays the banner at the top of the page
 // it should provide a banner, containing the logo and app name,
