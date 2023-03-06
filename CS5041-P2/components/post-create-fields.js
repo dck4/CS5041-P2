@@ -48,6 +48,7 @@ export default function CreatePostFields({  }) {
             const postData = {
                 author: userItem,
                 game: game,
+                // get html text from the raw data of the rich text editor
                 body: draftToHtml(convertToRaw(body.getCurrentContent()))
             }
 
@@ -59,7 +60,7 @@ export default function CreatePostFields({  }) {
                 content: JSON.stringify(postData)
             })
 
-            // follow the tutorial here.
+            // follow the tutorial here - not strictly necessary as page is navigated away from anyway
             setTitle("");
             setGame("");
             setBody(() => EditorState.createEmpty());
@@ -111,16 +112,19 @@ export default function CreatePostFields({  }) {
                     <Text>loading...</Text>
                 </SafeAreaView> :
                 <>
+                    {/* input for title */}
                     <TextInput 
                         placeholder="Title"
                         value={title}
                         style={createPostStyles.titleInput}
                         onChangeText={title => setTitle(title)}></TextInput>
+                    {/* input for game */}
                     <TextInput
                         placeholder="Game"
                         value={game}
                         style={createPostStyles.titleInput}
                         onChangeText={game => setGame(game)}></TextInput>
+                    {/* rich text editor for body */}
                     <Editor placeholder="Body" editorState={body} onEditorStateChange={setBody} editorStyle={createPostStyles.rtf}/>
                     <View style={{flexDirection:"row",width:"100%",justifyContent:"center"}}>
                         <Button style={[createPostStyles.button,createPostStyles.createbutton]} onPress={handleOnPostPress}>

@@ -15,10 +15,14 @@ import { Link } from 'react-router-native';
 
 export default function Banner({ after }) {
     
+    // get the window dimensions
+
     const windowDimensions = Dimensions.get('window')
     const [dimensions, setDimensions] = useState(windowDimensions);
 
     const navigate = useNavigate()
+
+    // subscribe to the window dimensions so the banner updates to match changes
 
     useEffect(() => {
         const subscription = Dimensions.addEventListener(

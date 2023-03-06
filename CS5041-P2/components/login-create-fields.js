@@ -35,6 +35,8 @@ export default function LoginCreateFields ({  }) {
         }
     }
 
+    // get and subscribe to the window dimensions so elements resize appropriately
+
     const windowDimensions = Dimensions.get('window')
     const [dimensions, setDimensions] = React.useState(windowDimensions);
 

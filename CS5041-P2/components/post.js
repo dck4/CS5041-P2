@@ -19,19 +19,23 @@ export default function Post({ el, reactions, gameList }) {
 
     return (
         <View style={styles.postcontainer}>
+            {/* meta information displays to the left */}
             <View style={styles.leftContent}>
                 <Meta author={content.author} date={el[1].created}/>
                 <Game game={content.game}/>
             </View>
+            {/* post content and reactions display in the middle */}
             <View style={styles.mainbox}>
                 <View style={{flexDirection:"row"}}>
                     <PostMain title={el[1].message} body={typeof content.body == 'string' ? content.body : ""}/>
                 </View>
+                {/* reactions go below post content */}
                 <View style={styles.reactionbox}>
                     <Reactions reactions={reactions}/>
                     <AddReaction reactions={reactions} id={el[0]}/>
                 </View>
             </View>
+            {/* game details display to the right */}
             <GameDetails game={content.game} gameList={gameList} style={styles.leftContent}/>
         </View>
     )

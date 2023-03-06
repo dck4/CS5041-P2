@@ -62,7 +62,6 @@ export function PostList() {
                 <View style={{justifyContent:"center",alignItems:"center",width:"100%"}}>
                     {/* Maps the nested list of message to a flat array and sort by created time */}
                     {getPostList(snapshots).map((el, i) =>
-                        // <Post key={i} iMax={snapshots.flatMap(el => Object.entries(el.val())).length} el={el} message={el[1]}></Post>
                         <Post key={i} el={el} reactions={getReactions(snapshots, el[0])} gameList={gameList}></Post>
 
                     )}

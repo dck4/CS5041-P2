@@ -28,8 +28,11 @@ export default function App() {
     <SafeAreaProvider>
       <Provider store={store}>
         <Router>
+          {/* load the Raleway font from google */}
           <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
           <Routes>
+            {/* banner acts as a wrapper for the main content, displaying it after the banner
+                this allows a banner to be displayed and provide navigation when using react router */}
             <Route exact path="/" element={<Banner after={<Main/>} />}/>
             <Route path="LoginCreate" element={<Banner after={<LoginCreate />}/>}/>
             <Route path="CreatePost" element={<Banner after={<CreatePost />}/>}/>

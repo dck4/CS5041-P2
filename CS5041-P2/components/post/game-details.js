@@ -8,27 +8,18 @@ import { SteamDetails } from "./steam-details";
 
 export function GameDetails({game, gameList}) {
 
-    const apikey = "C21C1D532C4B4953D7CCD5F3BDC8D5C1"
-
-    // const steam = new SteamAPI('C21C1D532C4B4953D7CCD5F3BDC8D5C1');
-
-    // let info = {}
-
-    // useEffect(() => {
-    //     info = steam.getAppList()
-    // }, [])
-
     const [gameInfo, setGameInfo] = useState(null);
 
     useEffect(() => {
+        // don't try to load game information if the gameList hasn't loaded, or doesn't contain the game
         if (gameList == null) return
         let gameId = gameList[game.replace(/\W/g, '').trim().toLowerCase()]
         if (gameId == null) {
             setGameInfo(null)
             return
         }
-        console.log("fetching game info")
-        // GET request using fetch inside useEffect React hook
+        
+        // fetch game info from the steam API
         fetch(`http://localhost:8080/http://store.steampowered.com/api/appdetails?appids=${gameId}`)
             .then(response => response.json())
             .then(data => setGameInfo(data));
@@ -39,6 +30,7 @@ export function GameDetails({game, gameList}) {
     return (
         <>
             {game == null || game == undefined
+            // display an empty view if game info hasn't loaded, otherwise the steam game details
                 ? <View style={styles.leftContent} />
                 : <SteamDetails info={gameInfo} style={styles.steamdetails}/>
             }

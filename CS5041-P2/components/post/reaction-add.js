@@ -8,17 +8,13 @@ import 'react-grid-dropdown/dist/style.css'
 import React from "react";
 import { Select } from "@mui/material";
 import { MenuItem } from "@mui/material";
-import { useEffect, useState } from "react";
-import { ref, get, push, child, serverTimestamp, remove, update } from 'firebase/database'
+import { useEffect } from "react";
+import { ref, get, push, child, serverTimestamp } from 'firebase/database'
 import { auth, database } from '../../firebase';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signInAnonymously } from "firebase/auth";
 import { reactionkey } from "../../keys";
-import { Reactions } from "./reaction-display";
 import { useSelector } from "react-redux";
-import { FormControl } from "@mui/material";
-import { InputLabel } from "@mui/material";
-import { NativeSelect } from "@mui/material";
 
 const selectUsername = state => state.username
 
@@ -42,7 +38,7 @@ export function AddReaction({ reactions, id }) {
 		}
 
 		if (reactions.some((react) => react.author==userItem && react.reaction==reaction)) {
-			alert("Someone with this username alread added this reaction!")
+			alert("Someone with this username already added this reaction!")
 			return
 		}
 
@@ -50,7 +46,9 @@ export function AddReaction({ reactions, id }) {
 			type: reactionkey,
 			created: serverTimestamp(),
 			modified: serverTimestamp(),
+			// use the post id as the message to easily find the reactions for different posts
 			message: id,
+			// record the username so a user can't spam the same reaction
 			content: JSON.stringify({author:userItem,reaction:reaction})
 		})
 
@@ -64,6 +62,7 @@ export function AddReaction({ reactions, id }) {
 
     return (
 			<Select displayEmpty="true" renderValue={() => "+"} style={{fontSize:28,fontFamily:"Raleway"}} id="status-menu" label="+">
+				{/* display a list of all emojis in the list to select from */}
 				{reactionlist.map((reaction, i) =>
 					<MenuItem key={i} onClick={() => addReaction(reaction)}>{reaction}</MenuItem>
 				)}
