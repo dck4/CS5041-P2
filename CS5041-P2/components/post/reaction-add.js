@@ -16,6 +16,9 @@ import { signInAnonymously } from "firebase/auth";
 import { reactionkey } from "../../keys";
 import { Reactions } from "./reaction-display";
 import { useSelector } from "react-redux";
+import { FormControl } from "@mui/material";
+import { InputLabel } from "@mui/material";
+import { NativeSelect } from "@mui/material";
 
 const selectUsername = state => state.username
 
@@ -59,11 +62,11 @@ export function AddReaction({ reactions, id }) {
 		})
 	}
 
-    return (	
-        <Select id="status-menu" label="+">
-            {reactionlist.map((reaction, i) =>
-                <MenuItem key={i} onClick={() => addReaction(reaction)}>{reaction}</MenuItem>
-            )}
-        </Select>
+    return (
+			<Select displayEmpty="true" renderValue={() => "+"} style={{fontSize:28,fontFamily:"Raleway"}} id="status-menu" label="+">
+				{reactionlist.map((reaction, i) =>
+					<MenuItem key={i} onClick={() => addReaction(reaction)}>{reaction}</MenuItem>
+				)}
+			</Select>
     )
 }
